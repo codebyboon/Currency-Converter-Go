@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -28,7 +28,7 @@ func getExchangeRates(baseCurrency string, convertCurrency string) (*ExchangeRat
 	fmt.Println("successfully retrieved API response.")
 	defer response.Body.Close()
 
-	data, err := ioutil.ReadAll(response.Body)
+	data, err := io.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
 	}
